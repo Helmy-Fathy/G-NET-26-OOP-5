@@ -12,21 +12,24 @@ namespace G_NET_26_OOP_3
         public bool LoungeAccess { get; set; }
         public decimal ServiceFee { get; } = 50m;
 
-        public new decimal PriceAfterTax
-        {
-            get { return base.PriceAfterTax + ServiceFee; }
-        }
+        public new decimal PriceAfterTax =>  base.PriceAfterTax + ServiceFee; 
+
 
         public VIPTicket(string movieName, decimal price, bool loungeAccess): base(movieName, price)
         {
             LoungeAccess = loungeAccess;
         }
 
-        public override void PrintTicket()
+        public override void Print()
         {
-            Console.WriteLine($"Ticket #{TicketId} | {MovieName} | Price: {Price} EGP | After Tax: {PriceAfterTax:F2} EGP");
-            Console.WriteLine($"   Lounge: {(LoungeAccess ? "Yes" : "No")} | Service Fee: {ServiceFee} EGP");
+            Console.WriteLine($"[Ticket #{TicketId}] {MovieName} | VIP | Lounge: {(LoungeAccess ? "Yes" : "No")} | Fee: {ServiceFee} | Price: {Price} | After Tax: {base.PriceAfterTax} | Booked: {(IsBooked ? "Yes" : "No")}");
         }
+
+        public override object Clone()
+        {
+            return new VIPTicket(this.MovieName, this.Price, this.LoungeAccess);
+        }
+
 
         public override string ToString()
         {

@@ -33,10 +33,15 @@ namespace G_NET_26_OOP_3
             Is3D = is3D;
         }
 
-        public override void PrintTicket()
+        public override void Print()
         {
-            base.PrintTicket();
-            Console.WriteLine($"   IMAX 3D: {(Is3D ? "Yes" : "No")}");
+            Console.WriteLine($"[Ticket #{TicketId}] {MovieName} | IMAX | 3D: {(Is3D ? "Yes" : "No")} | Price: {Price} | After Tax: {PriceAfterTax} | Booked: {(IsBooked ? "Yes" : "No")}");
+        }
+
+        public override object Clone()
+        {
+            decimal basePrice = Is3D ? Price - 30m : Price;
+            return new IMAXTicket(this.MovieName, basePrice, this.Is3D);
         }
 
         public override string ToString()

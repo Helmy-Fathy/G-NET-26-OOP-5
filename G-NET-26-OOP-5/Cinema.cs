@@ -1,4 +1,5 @@
 ﻿using G_NET_26_OOP_1;
+using G_NET_26_OOP_5;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,20 +38,12 @@ namespace G_NET_26_OOP_3
 
         public void PrintAllTickets()
         {
-            Console.WriteLine("\n========== All Tickets ==========");
-            bool anyTicket = false;
-
-            for (int i = 0; i < _tickets.Length; i++)
+            Console.WriteLine("\n--- All Tickets ---");
+            foreach (IPrintable t in _tickets)
             {
-                if (_tickets[i] != null)
-                {
-                    _tickets[i].PrintTicket();
-                    anyTicket = true;
-                }
+                if (t != null)
+                    t.Print();   
             }
-
-            if (!anyTicket)
-                Console.WriteLine("No tickets have been added yet.");
         }
 
 

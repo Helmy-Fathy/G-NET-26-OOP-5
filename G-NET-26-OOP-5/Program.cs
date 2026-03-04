@@ -1,4 +1,7 @@
-﻿namespace G_NET_26_OOP_5
+﻿using G_NET_26_OOP_2;
+using G_NET_26_OOP_3;
+
+namespace G_NET_26_OOP_5
 {
     internal class Program
     {
@@ -71,6 +74,46 @@
             // Qa - Testing
 
             #endregion
+            #endregion
+
+            #region Part 02 : Practical (Extending the Movie Ticket Booking System)
+
+            Cinema cinema = new Cinema("Grand Cinema", "Sony 4K");
+            cinema.OpenCinema();
+
+            StandardTicket t1 = new StandardTicket("Inception", 80m, "A5");
+            VIPTicket t2 = new VIPTicket("Avengers", 200m, true);
+            IMAXTicket t3 = new IMAXTicket("Dune", 100m, true); 
+
+            t1.Book();
+            t2.Book();
+            t3.Book();
+
+            cinema.AddTicket(t1);
+            cinema.AddTicket(t2);
+            cinema.AddTicket(t3);
+
+            cinema.PrintAllTickets();
+
+            Console.WriteLine("\n--- Clone Test ---");
+            VIPTicket cloned = (VIPTicket)t2.Clone();   
+            cloned.MovieName = "Interstellar";           
+
+            Console.Write("Original : ");
+            t2.Print();                                  
+
+            Console.Write("Clone    : ");
+            cloned.Print();                              
+
+            Console.WriteLine("\n--- After Cancellation ---");
+            t1.Cancel();
+            t1.Print();
+
+            BookingHelper.PrintAll(new IPrintable[] { t1, t2, t3 });
+
+            Console.WriteLine();
+            cinema.CloseCinema();
+
             #endregion
         }
     }

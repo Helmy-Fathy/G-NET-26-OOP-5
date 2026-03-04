@@ -11,15 +11,20 @@ namespace G_NET_26_OOP_3
     {
         public string SeatNumber { get; set; }
 
-        public StandardTicket(string movieName, decimal price, string seatNumber): base(movieName, price)
+        public StandardTicket(string movieName, decimal price, string seatNumber) : base(movieName, price)
         {
             SeatNumber = seatNumber;
         }
 
-        public override void PrintTicket()
+        public override void Print()
         {
-            base.PrintTicket();
-            Console.WriteLine($"   Seat: {SeatNumber}");
+            Console.WriteLine(
+                $"[Ticket #{TicketId}] {MovieName} | Standard | Seat: {SeatNumber} | Price: {Price} | After Tax: {PriceAfterTax} | Booked: {(IsBooked ? "Yes" : "No")}");
+        }
+
+        public override object Clone()
+        {
+            return new StandardTicket(this.MovieName, this.Price, this.SeatNumber);
         }
 
         public override string ToString()
